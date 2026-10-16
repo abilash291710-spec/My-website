@@ -4,23 +4,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>Abilash | My Website</title>
+
   <style>
-    body {
-      background: #101014;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px 20px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #252c43;
+    }
+
+    .logo {
+      color: #70e1ff;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .hero {
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 22px;
+    }
+
+    .tag {
+      color: #70e1ff;
+      border: 1px solid #354968;
+      border-radius: 30px;
+      padding: 9px 16px;
+      margin-bottom: 24px;
+    }
+
     h1 {
-      color: #66aaff;
+      font-size: clamp(38px, 8vw, 68px);
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #70e1ff;
+    }
+
+    .description {
+      max-width: 500px;
+      color: #b4bfd3;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #70e1ff;
+      color: #09111e;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .card {
+      width: min(90%, 600px);
+      margin: 0 auto 50px;
+      padding: 25px;
+      border: 1px solid #29344d;
+      background: #121a2e;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .card p {
+      color: #b4bfd3;
+      line-height: 1.7;
+      margin-top: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #8490a8;
+      border-top: 1px solid #252c43;
+      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
-  <h1>Welcome to My Website!</h1>
-  <p>My first website, built using my phone.</p>
+  <header>
+    <div class="logo">ABILASH.</div>
+    <div>My Website</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="tag">WELCOME TO MY WEBSITE</div>
+
+      <h1>Ideas become<br><span>reality.</span></h1>
+
+      <p class="description">
+        Welcome to my corner of the internet.
+        I'm learning, building projects, and exploring
+        the world of technology.
+      </p>
+
+      <a class="button" href="#about">Explore More →</a>
+    </section>
+
+    <section class="card" id="about">
+      <h2>About This Website</h2>
+      <p>
+        Built with HTML and CSS using a mobile phone.
+        This is just the beginning. More projects
+        and features are coming soon!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Made with curiosity · 2026
+  </footer>
 </body>
 </html>
-
