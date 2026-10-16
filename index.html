@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Abilash | My Website</title>
 
   <style>
@@ -13,12 +13,25 @@
       padding: 0;
     }
 
+    html {
+      background: #000000;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      (background: linear-gradient(-45deg, #000000, #001f3f, #6a00ff, #00e5ff););
-background-size: 400% 400%;
+      background: linear-gradient(
+        -45deg,
+        #000000,
+        #001f3f,
+        #6a00ff,
+        #00e5ff
+      );
+      background-size: 400% 400%;
       color: white;
       min-height: 100vh;
+      animation:
+        pageFade 1s ease-out,
+        gradientMove 12s ease infinite;
     }
 
     header {
@@ -33,6 +46,9 @@ background-size: 400% 400%;
       color: #70e1ff;
       font-size: 23px;
       font-weight: bold;
+      text-shadow: 0 0 8px #70e1ff,
+                   0 0 20px #70e1ff;
+      animation: logoGlow 2s ease-in-out infinite alternate;
     }
 
     .hero {
@@ -51,6 +67,7 @@ background-size: 400% 400%;
       border-radius: 30px;
       padding: 9px 16px;
       margin-bottom: 24px;
+      animation: badgeGlow 2.5s ease-in-out infinite alternate;
     }
 
     h1 {
@@ -61,11 +78,12 @@ background-size: 400% 400%;
 
     h1 span {
       color: #70e1ff;
+      text-shadow: 0 0 15px #168bff;
     }
 
     .description {
       max-width: 500px;
-      color: #b4bfd3;
+      color: #e0e8ff;
       line-height: 1.8;
       margin-bottom: 30px;
     }
@@ -78,128 +96,110 @@ background-size: 400% 400%;
       padding: 14px 24px;
       border-radius: 10px;
       font-weight: bold;
+      transition: transform 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px #70e1ff;
     }
 
     .card {
       width: min(90%, 600px);
       margin: 0 auto 50px;
       padding: 25px;
-      border: 1px solid #29344d;
-      background: #121a2e;
+      border: 1px solid #70e1ff66;
+      background: #121a2eee;
       border-radius: 18px;
       text-align: center;
+      transition: transform 0.3s ease,
+                  box-shadow 0.3s ease;
     }
 
     .card p {
-      color: #b4bfd3;
+      color: #d0daee;
       line-height: 1.7;
       margin-top: 12px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 22px #168bff66;
     }
 
     footer {
       text-align: center;
       padding: 24px;
-      color: #8490a8;
+      color: #c0cce0;
       border-top: 1px solid #252c43;
       font-size: 14px;
     }
-    
-/* Smooth page appearance */
-body {
-  animation: pageFade 1s ease-out, gradientMove 12s ease infinite;
-}
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Glowing logo */
-.logo {
-  text-shadow: 0 0 8px #70e1ff,
-               0 0 20px #70e1ff;
-  animation: logoGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes logoGlow {
-  from {
-    text-shadow: 0 0 5px #70e1ff;
-  }
-  to {
-    text-shadow: 0 0 12px #70e1ff,
-                 0 0 28px #168bff;
-  }
-}
-
-/* Smooth button hover effect */
-.button {
-  transition: transform 0.3s ease,
-              box-shadow 0.3s ease;
-}
-
-.button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px #70e1ff;
-}
-
-/* Glowing welcome badge */
-.tag {
-  animation: badgeGlow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes badgeGlow {
-  from {
-    box-shadow: 0 0 3px #70e1ff;
-  }
-  to {
-    box-shadow: 0 0 16px #168bff;
-  }
-}
-
-/* Smooth card movement */
-.card {
-  transition: transform 0.3s ease,
-              box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 22px #168bff44;
-}
-
-/* Respect reduced-motion settings */
-@media (prefers-reduced-motion: reduce) {
-  body, .logo, .tag {
-    animation: none;
-  }
-
-  .button, .card {
-    transition: none;
-  }
-}
-body {
-  font-family: Arial, sans-serif;
-  background: #0b1020;
-  color: white;
-  min-height: 100vh;
-}
+    /* Moving gradient background */
     @keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Page entrance effect */
+    @keyframes pageFade {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Glowing logo */
+    @keyframes logoGlow {
+      from {
+        text-shadow: 0 0 5px #70e1ff;
+      }
+
+      to {
+        text-shadow: 0 0 12px #70e1ff,
+                     0 0 28px #168bff;
+      }
+    }
+
+    /* Glowing welcome badge */
+    @keyframes badgeGlow {
+      from {
+        box-shadow: 0 0 3px #70e1ff;
+      }
+
+      to {
+        box-shadow: 0 0 16px #168bff;
+      }
+    }
+
+    /* Accessibility: respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      body,
+      .logo,
+      .tag {
+        animation: none;
+      }
+
+      .button,
+      .card {
+        transition: none;
+      }
+    }
   </style>
 </head>
 
@@ -213,7 +213,10 @@ body {
     <section class="hero">
       <div class="tag">WELCOME TO MY WEBSITE</div>
 
-      <h1>Ideas become<br><span>reality.</span></h1>
+      <h1>
+        Ideas become<br>
+        <span>reality.</span>
+      </h1>
 
       <p class="description">
         Welcome to my corner of the internet.
@@ -226,6 +229,7 @@ body {
 
     <section class="card" id="about">
       <h2>About This Website</h2>
+
       <p>
         Built with HTML and CSS using a mobile phone.
         This is just the beginning. More projects
