@@ -102,6 +102,87 @@
       border-top: 1px solid #252c43;
       font-size: 14px;
     }
+    
+/* Smooth page appearance */
+body {
+  animation: pageFade 1s ease-out;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glowing logo */
+.logo {
+  text-shadow: 0 0 8px #70e1ff,
+               0 0 20px #70e1ff;
+  animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from {
+    text-shadow: 0 0 5px #70e1ff;
+  }
+  to {
+    text-shadow: 0 0 12px #70e1ff,
+                 0 0 28px #168bff;
+  }
+}
+
+/* Smooth button hover effect */
+.button {
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px #70e1ff;
+}
+
+/* Glowing welcome badge */
+.tag {
+  animation: badgeGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes badgeGlow {
+  from {
+    box-shadow: 0 0 3px #70e1ff;
+  }
+  to {
+    box-shadow: 0 0 16px #168bff;
+  }
+}
+
+/* Smooth card movement */
+.card {
+  transition: transform 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 22px #168bff44;
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  body, .logo, .tag {
+    animation: none;
+  }
+
+  .button, .card {
+    transition: none;
+  }
+}
+
   </style>
 </head>
 
