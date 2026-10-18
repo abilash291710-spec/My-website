@@ -1,255 +1,731 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Abilash AnimeVerse | Anime & Movies</title>
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Discover anime, explore genres, and build your favourites with Abilash AnimeVerse.">
+  <title>Abilash AnimeVerse</title>
 
   <style>
+    :root {
+      --bg: #080b12;
+      --panel: #111722;
+      --blue: #55ddff;
+      --white: #f7fbff;
+      --muted: #a5b1c2;
+      --border: #263447;
+    }
+
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html {
-      background: #000000;
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at top, #10283b 0%, var(--bg) 48%);
+      color: var(--white);
       font-family: Arial, sans-serif;
-      background: linear-gradient(
-  135deg,
-  #050505,
-  #111018,
-  #1A1226,
-  #08080D
-
-    );
-background-size: 400% 400%;
-      color: white;
       min-height: 100vh;
-      animation:
-        pageFade 1s ease-out,
-        gradientMove 12s ease infinite;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
     }
 
     header {
-      padding: 22px 7%;
+      padding: 18px 5%;
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #252c43;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: #080b12eF;
     }
 
     .logo {
-      color: #70e1ff;
-      font-size: 23px;
-      font-weight: bold;
-      text-shadow: 0 0 8px #70e1ff,
-                   0 0 20px #70e1ff;
-      animation: logoGlow 2s ease-in-out infinite alternate;
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--blue);
+      text-shadow: 0 0 14px #55ddff66;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--blue);
     }
 
     .hero {
-      min-height: 75vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       text-align: center;
-      padding: 40px 22px;
+      padding: 65px 18px 45px;
     }
 
     .tag {
-      color: #70e1ff;
-      border: 1px solid #354968;
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid #55ddff66;
       border-radius: 30px;
-      padding: 9px 16px;
-      margin-bottom: 24px;
-      animation: badgeGlow 2.5s ease-in-out infinite alternate;
+      color: var(--blue);
+      background: #55ddff0c;
+      font-size: 12px;
+      letter-spacing: 1px;
     }
 
     h1 {
-      font-size: clamp(38px, 8vw, 68px);
+      font-size: clamp(34px, 8vw, 58px);
+      margin: 20px 0 12px;
       line-height: 1.12;
-      margin-bottom: 20px;
     }
 
     h1 span {
-      color: #70e1ff;
-      text-shadow: 0 0 15px #168bff;
+      color: var(--blue);
+      text-shadow: 0 0 24px #55ddff44;
     }
 
-    .description {
-      max-width: 500px;
-      color: #e0e8ff;
-      line-height: 1.8;
-      margin-bottom: 30px;
+    .hero p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 25px;
+      line-height: 1.7;
     }
 
     .button {
       display: inline-block;
-      background: #70e1ff;
-      color: #09111e;
-      text-decoration: none;
-      padding: 14px 24px;
+      background: var(--blue);
+      color: #061018;
+      padding: 13px 19px;
+      border: 0;
       border-radius: 10px;
       font-weight: bold;
-      transition: transform 0.3s ease,
-                  box-shadow 0.3s ease;
+      text-decoration: none;
     }
 
     .button:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 20px #70e1ff;
+      box-shadow: 0 0 20px #55ddff55;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 0 18px 45px;
     }
 
     .card {
-      width: min(90%, 600px);
-      margin: 0 auto 50px;
-      padding: 25px;
-      border: 1px solid rgba(125, 220, 255, 0.85);
-      background: rgba(35, 65, 90, 0.55);
-      border-radius: 18px;
+      background: #111722dd;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 23px;
+      margin: 22px 0;
+      box-shadow: 0 8px 30px #00000020;
+    }
+
+    h2 {
+      font-size: 23px;
+      margin: 0 0 19px;
+    }
+
+    .genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .genre-button {
+      background: #0b111b;
+      border: 1px solid #304156;
+      color: #e9f5ff;
+      padding: 10px 13px;
+      border-radius: 9px;
+      transition: .2s;
+    }
+
+    .genre-button:hover,
+    .genre-button.active {
+      color: var(--blue);
+      border-color: var(--blue);
+      background: #55ddff13;
+      box-shadow: 0 0 12px #55ddff19;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .search-row input {
+      flex: 1;
+      min-width: 180px;
+      padding: 13px;
+      background: #080d16;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+    }
+
+    .search-row input:focus {
+      border-color: var(--blue);
+    }
+
+    .small-button {
+      background: #182536;
+      color: var(--blue);
+      border: 1px solid #304156;
+      padding: 11px 14px;
+      border-radius: 9px;
+    }
+
+    .small-button.active {
+      background: var(--blue);
+      color: #061018;
+    }
+
+    .catalogue-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 24px 0 16px;
+    }
+
+    .catalogue-heading h2 {
+      margin: 0;
+    }
+
+    #result-count {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .anime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 17px;
+    }
+
+    .anime-card {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel);
+      transition: transform .2s, border-color .2s;
+    }
+
+    .anime-card:hover {
+      transform: translateY(-4px);
+      border-color: #55ddff99;
+    }
+
+    .poster {
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
       text-align: center;
-      transition: transform 0.3s ease,
-                  box-shadow 0.3s ease;
+      background:
+        radial-gradient(circle at 50% 40%, #1d5773, #111c30 60%, #080b12);
+      border-bottom: 1px solid var(--border);
     }
 
-    .card p {
-      color: #d0daee;
+    .poster-symbol {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .poster strong {
+      font-size: 19px;
+      text-shadow: 0 2px 8px #000;
+    }
+
+    .anime-info {
+      padding: 15px;
+    }
+
+    .anime-info h3 {
+      font-size: 18px;
+      margin: 0 0 9px;
+    }
+
+    .meta {
+      color: var(--blue);
+      font-size: 12px;
+      margin-bottom: 11px;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      min-height: 62px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .chip {
+      color: #c5d4e5;
+      background: #1a2737;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+    }
+
+    .favorite-button {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #304156;
+      border-radius: 8px;
+      color: white;
+      background: #0b111b;
+    }
+
+    .favorite-button.saved {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 35px 10px;
       line-height: 1.7;
-      margin-top: 12px;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 22px #168bff66;
+    #about p {
+      color: var(--muted);
+      line-height: 1.8;
     }
 
     footer {
       text-align: center;
-      padding: 24px;
-      color: #c0cce0;
-      border-top: 1px solid #252c43;
-      font-size: 14px;
+      padding: 25px 15px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    /* Moving gradient background */
-    @keyframes gradientMove {
-      0% {
-        background-position: 0% 50%;
+    @media (max-width: 480px) {
+      header {
+        justify-content: center;
       }
 
-      50% {
-        background-position: 100% 50%;
+      nav {
+        justify-content: center;
       }
 
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    /* Page entrance effect */
-    @keyframes pageFade {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
+      .hero {
+        padding-top: 45px;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Glowing logo */
-    @keyframes logoGlow {
-      from {
-        text-shadow: 0 0 5px #70e1ff;
-      }
-
-      to {
-        text-shadow: 0 0 12px #70e1ff,
-                     0 0 28px #168bff;
-      }
-    }
-
-    /* Glowing welcome badge */
-    @keyframes badgeGlow {
-      from {
-        box-shadow: 0 0 3px #70e1ff;
-      }
-
-      to {
-        box-shadow: 0 0 16px #168bff;
-      }
-    }
-
-    /* Accessibility: respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      body,
-      .logo,
-      .tag {
-        animation: none;
-      }
-
-      .button,
       .card {
-        transition: none;
+        padding: 16px;
+      }
+
+      .anime-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">ABILASH.</div>
-    <div>My Website</div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="tag">YOUR ANIME & MOVIE UNIVERSE</div>
+<header>
+  <div class="logo">✦ AnimeVerse</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#genres">Genres</a>
+    <a href="#anime">Anime</a>
+    <a href="#favorites">Favorites</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
 
-      <h1>
-       Discover your<br>
-       <span>next obsession.</span>
-      </h1>
-      <p class="description">
-        Discover the best anime, movies, and TV series
-       from around the world. Explore genres, uncover
-       hidden gems, and find your next favorite story.
-      </p>
-
-      <a class="button" href="#genres">Explore Anime & Movies →</a>
-    </section>
-      
-<section class="card" id="genres">
-  <h2>Explore Genres</h2>
+<section class="hero" id="home">
+  <span class="tag">YOUR ANIME DISCOVERY HUB</span>
+  <h1>Enter the world of<br><span>AnimeVerse</span></h1>
   <p>
-    Slice of Life · Reincarnation · Isekai · Action ·
-    Romance · Fantasy · Comedy · Mystery · Horror ·
-    Adventure · Supernatural · Sci-Fi · Sports · Drama
+    Discover new adventures, explore your favourite genres,
+    and build your personal anime collection.
   </p>
+  <a class="button" href="#anime">Explore Anime ↓</a>
 </section>
 
+<main>
 
-    <section class="card" id="about">
-      <h2>About This Website</h2>
+  <section class="card" id="genres">
+    <h2>Explore Genres</h2>
+    <div class="genres" id="genre-buttons"></div>
+  </section>
 
-      <p>
-        Built with HTML and CSS using a mobile phone.
-        This is just the beginning. More projects
-        and features are coming soon!
-      </p>
-    </section>
-  </main>
+  <section class="card" id="anime">
+    <h2>Discover Anime</h2>
 
-  <footer>
-    Made with curiosity · 2026
-  </footer>
+    <div class="search-row">
+      <input
+        type="search"
+        id="search"
+        placeholder="Search anime titles..."
+        aria-label="Search anime titles"
+      >
+      <button class="small-button" id="clear-search">Clear</button>
+    </div>
+
+    <div class="catalogue-heading">
+      <h2 id="catalogue-title">All Anime</h2>
+      <span id="result-count"></span>
+    </div>
+
+    <div class="anime-grid" id="anime-grid"></div>
+    <p class="empty" id="empty-message" hidden>
+      No anime found. Try another title or genre.
+    </p>
+  </section>
+
+  <section class="card" id="favorites">
+    <h2>♥ My Favorites</h2>
+    <p style="color:var(--muted);line-height:1.7">
+      Your saved anime will appear here.
+    </p>
+    <div class="anime-grid" id="favorite-grid"></div>
+    <p class="empty" id="favorite-empty">
+      You haven't added any favorites yet.
+    </p>
+  </section>
+
+  <section class="card" id="about">
+    <h2>About AnimeVerse</h2>
+    <p>
+      Abilash AnimeVerse is an anime discovery website built
+      with HTML, CSS, and JavaScript on a mobile phone.
+      Search the starter catalogue, explore genres, and save
+      your favourite titles.
+    </p>
+    <p>
+      This is a discovery catalogue, not a streaming service.
+      Audio, subtitle, and streaming availability vary by title
+      and region. Check official providers for current options.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  Made with curiosity · 2026 · Abilash AnimeVerse
+</footer>
+
+<script>
+  const genres = [
+    "All", "Slice of Life", "Reincarnation", "Isekai",
+    "Action", "Romance", "Fantasy", "Comedy", "Mystery",
+    "Horror", "Adventure", "Supernatural", "Sci-Fi",
+    "Sports", "Drama"
+  ];
+
+  const animeList = [
+    {
+      id: 1,
+      title: "One Piece",
+      year: 1999,
+      symbol: "☠️",
+      genres: ["Action", "Adventure", "Fantasy", "Comedy"],
+      description: "Monkey D. Luffy and his crew sail the seas in search of the legendary treasure.",
+      language: "Japanese original"
+    },
+    {
+      id: 2,
+      title: "Naruto",
+      year: 2002,
+      symbol: "🍥",
+      genres: ["Action", "Adventure", "Comedy", "Drama"],
+      description: "A young ninja works toward his dream of becoming the leader of his village.",
+      language: "Japanese original"
+    },
+    {
+      id: 3,
+      title: "Attack on Titan",
+      year: 2013,
+      symbol: "⚔️",
+      genres: ["Action", "Drama", "Mystery", "Fantasy"],
+      description: "Humanity struggles to survive behind enormous walls in a dangerous world.",
+      language: "Japanese original"
+    },
+    {
+      id: 4,
+      title: "Re:Zero",
+      year: 2016,
+      symbol: "⏳",
+      genres: ["Isekai", "Reincarnation", "Fantasy", "Drama"],
+      description: "A young man in another world discovers that he can return to an earlier point in time.",
+      language: "Japanese original"
+    },
+    {
+      id: 5,
+      title: "That Time I Got Reincarnated as a Slime",
+      year: 2018,
+      symbol: "💧",
+      genres: ["Isekai", "Reincarnation", "Fantasy", "Adventure"],
+      description: "A man begins a new life in a fantasy world as a slime and builds a community.",
+      language: "Japanese original"
+    },
+    {
+      id: 6,
+      title: "K-On!",
+      year: 2009,
+      symbol: "🎸",
+      genres: ["Slice of Life", "Comedy", "Music"],
+      description: "School friends enjoy everyday life and make music together.",
+      language: "Japanese original"
+    },
+    {
+      id: 7,
+      title: "Haikyu!!",
+      year: 2014,
+      symbol: "🏐",
+      genres: ["Sports", "Comedy", "Drama"],
+      description: "A determined volleyball player works with his teammates to improve.",
+      language: "Japanese original"
+    },
+    {
+      id: 8,
+      title: "Death Note",
+      year: 2006,
+      symbol: "📓",
+      genres: ["Mystery", "Supernatural", "Drama", "Thriller"],
+      description: "A mysterious notebook leads to a battle of intelligence and morality.",
+      language: "Japanese original"
+    },
+    {
+      id: 9,
+      title: "Dr. Stone",
+      year: 2019,
+      symbol: "🧪",
+      genres: ["Sci-Fi", "Adventure", "Comedy"],
+      description: "A science-loving teenager tries to rebuild civilization after a global mystery.",
+      language: "Japanese original"
+    },
+    {
+      id: 10,
+      title: "Fruits Basket",
+      year: 2019,
+      symbol: "🍙",
+      genres: ["Romance", "Slice of Life", "Comedy", "Drama"],
+      description: "A kind-hearted student discovers a family's unusual secret.",
+      language: "Japanese original"
+    },
+    {
+      id: 11,
+      title: "Mob Psycho 100",
+      year: 2016,
+      symbol: "✨",
+      genres: ["Action", "Comedy", "Supernatural"],
+      description: "A quiet student with extraordinary psychic abilities learns about himself.",
+      language: "Japanese original"
+    },
+    {
+      id: 12,
+      title: "Frieren: Beyond Journey's End",
+      year: 2023,
+      symbol: "🌌",
+      genres: ["Fantasy", "Adventure", "Drama"],
+      description: "An elf mage reflects on time, friendship, and the meaning of human life.",
+      language: "Japanese original"
+    }
+  ];
+
+  let selectedGenre = "All";
+  let favoritesOnly = false;
+  let favorites = loadFavorites();
+
+  function loadFavorites() {
+    try {
+      return JSON.parse(
+        localStorage.getItem("animeverse-favorites") || "[]"
+      );
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveFavorites() {
+    try {
+      localStorage.setItem(
+        "animeverse-favorites",
+        JSON.stringify(favorites)
+      );
+    } catch (error) {
+      // Favorites still work until the page is refreshed.
+    }
+  }
+
+  function createGenreButtons() {
+    const container = document.getElementById("genre-buttons");
+
+    container.innerHTML = genres.map(genre => `
+      <button
+        class="genre-button ${genre === selectedGenre ? "active" : ""}"
+        data-genre="${genre}"
+        aria-pressed="${genre === selectedGenre}"
+      >${genre}</button>
+    `).join("");
+
+    container.querySelectorAll("button").forEach(button => {
+      button.addEventListener("click", () => {
+        selectedGenre = button.dataset.genre;
+        favoritesOnly = false;
+        createGenreButtons();
+        renderAnime();
+        document.getElementById("catalogue-title").textContent =
+          selectedGenre === "All" ? "All Anime" : selectedGenre + " Anime";
+      });
+    });
+  }
+
+  function makeAnimeCard(anime) {
+    const isSaved = favorites.includes(anime.id);
+
+    return `
+      <article class="anime-card">
+        <div class="poster">
+          <span class="poster-symbol">${anime.symbol}</span>
+          <strong>${anime.title}</strong>
+        </div>
+
+        <div class="anime-info">
+          <h3>${anime.title}</h3>
+          <div class="meta">${anime.year} · ${anime.language}</div>
+          <p class="description">${anime.description}</p>
+
+          <div class="chips">
+            ${anime.genres.slice(0, 3).map(genre =>
+              `<span class="chip">${genre}</span>`
+            ).join("")}
+          </div>
+
+          <button
+            class="favorite-button ${isSaved ? "saved" : ""}"
+            data-favorite="${anime.id}"
+            aria-pressed="${isSaved}"
+          >${isSaved ? "♥ Saved to Favorites" : "♡ Add to Favorites"}</button>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderAnime() {
+    const query = document.getElementById("search").value
+      .trim().toLowerCase();
+
+    let results = animeList.filter(anime => {
+      const matchesGenre =
+        selectedGenre === "All" ||
+        anime.genres.includes(selectedGenre);
+
+      const matchesSearch =
+        anime.title.toLowerCase().includes(query) ||
+        anime.genres.some(genre =>
+          genre.toLowerCase().includes(query)
+        );
+
+      const matchesFavorites =
+        !favoritesOnly || favorites.includes(anime.id);
+
+      return matchesGenre && matchesSearch && matchesFavorites;
+    });
+
+    document.getElementById("anime-grid").innerHTML =
+      results.map(makeAnimeCard).join("");
+
+    document.getElementById("result-count").textContent =
+      results.length + (results.length === 1 ? " title" : " titles");
+
+    document.getElementById("empty-message").hidden =
+      results.length !== 0;
+
+    renderFavorites();
+    attachFavoriteEvents();
+  }
+
+  function renderFavorites() {
+    const saved = animeList.filter(anime =>
+      favorites.includes(anime.id)
+    );
+
+    document.getElementById("favorite-grid").innerHTML =
+      saved.map(makeAnimeCard).join("");
+
+    document.getElementById("favorite-empty").hidden =
+      saved.length !== 0;
+
+    attachFavoriteEvents();
+  }
+
+  function attachFavoriteEvents() {
+    document.querySelectorAll("[data-favorite]").forEach(button => {
+      button.onclick = () => {
+        const id = Number(button.dataset.favorite);
+
+        if (favorites.includes(id)) {
+          favorites = favorites.filter(item => item !== id);
+        } else {
+          favorites.push(id);
+        }
+
+        saveFavorites();
+        renderAnime();
+      };
+    });
+  }
+
+  document.getElementById("search").addEventListener("input", () => {
+    favoritesOnly = false;
+    renderAnime();
+  });
+
+  document.getElementById("clear-search").addEventListener("click", () => {
+    document.getElementById("search").value = "";
+    selectedGenre = "All";
+    favoritesOnly = false;
+
+    createGenreButtons();
+    document.getElementById("catalogue-title").textContent = "All Anime";
+    renderAnime();
+  });
+
+  createGenreButtons();
+  renderAnime();
+</script>
+
 </body>
 </html>
